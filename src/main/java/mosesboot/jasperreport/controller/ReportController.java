@@ -29,6 +29,10 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
+
+/**
+ * 基于jdbc查询数据库
+ */
 @Controller
 public class ReportController {
     @Resource
