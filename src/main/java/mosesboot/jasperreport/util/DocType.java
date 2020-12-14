@@ -73,7 +73,7 @@ public enum DocType {
      */
     public static DocType fromTypeName(String typeName) {
         for (DocType docType : DocType.values()) {
-            if (docType.getTypeName().equals(typeName)) {
+            if (docType.getTypeName().equalsIgnoreCase(typeName)) {
                 return docType;
             }
         }
