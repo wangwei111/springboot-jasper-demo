@@ -5,17 +5,22 @@
  ********* K*I*N*G ********** B*A*C*K *******/
 package mosesboot.jasperreport.controller;
 /**
- * @author Moses *
- * @Date 2019/1/2 23:34
+ * @author wangwei
+ * @Date 2020/1/20201214
+ *  基于javabean数据源
  */
 
-import mosesboot.jasperreport.util.JasperHelper;
+import mosesboot.jasperreport.util.DocType;
 import mosesboot.jasperreport.util.JavaBeanJasperHelper;
+import mosesboot.user.entity.Depart;
+import mosesboot.user.entity.Person;
 import mosesboot.user.entity.User;
-import net.sf.jasperreports.engine.JRDataSource;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.export.JRPdfExporter;
+import net.sf.jasperreports.engine.export.ooxml.JRXlsxExporter;
+import net.sf.jasperreports.engine.util.FileBufferedOutputStream;
+import net.sf.jasperreports.engine.util.JRLoader;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,12 +28,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.annotation.Resource;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.sql.DataSource;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URLEncoder;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,13 +42,8 @@ import java.util.List;
 import java.util.Map;
 
 
-/**
- * 基于jdbc查询数据库
- */
 @Controller
 public class JavaBeanReportController {
-    @Resource
-    private DataSource dataSource;
 
     /**
      * 首页
@@ -53,7 +54,6 @@ public class JavaBeanReportController {
     public String report() {
         return "html/report";
     }
-
     /**
      * 生成报表
      *
@@ -78,7 +78,6 @@ public class JavaBeanReportController {
             HttpServletResponse response) throws SQLException, IOException, JRException {
         parameters = parameters == null ? new HashMap<>() : parameters;
         ClassPathResource resource = new ClassPathResource("jaspers/"+  reportName + ".jasper");
-
         String path = this.getClass().getClassLoader().getResource("jaspers/" + reportName + ".jasper").getPath();
         String path1 = this.getClass().getClassLoader().getResource("jaspers/" + reportName + ".jrxml").getPath();
 
@@ -98,13 +97,8 @@ public class JavaBeanReportController {
         list.add(user);
         list.add(user1);
         JRDataSource jrDataSource = new JRBeanCollectionDataSource(list);
-        parameters.put("id",1L);
-        parameters.put("name","测试");
-        parameters.put("age",2);
-        parameters.put("email","dsfdg");
-
-
         InputStream jasperStream = resource.getInputStream();
+        parameters.put("tableData",User.class);
         // parameters.put("whereSql", whereSql);
         JavaBeanJasperHelper.export(type, reportName, jasperStream, inline, request, response, parameters, jrDataSource);
     }

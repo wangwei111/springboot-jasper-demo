@@ -5,8 +5,9 @@
  ********* K*I*N*G ********** B*A*C*K *******/
 package mosesboot.jasperreport.controller;
 /**
- * @author Moses *
- * @Date 2019/1/2 23:34
+ * @author wangwei
+ * @Date 2020/1/20201214
+ * 基于jdbc查询数据库
  */
 
 import mosesboot.jasperreport.util.JasperHelper;
@@ -30,9 +31,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-/**
- * 基于jdbc查询数据库
- */
 @Controller
 public class ReportController {
     @Resource

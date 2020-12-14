@@ -23,8 +23,8 @@ import net.sf.jasperreports.export.*;
 import java.io.File;
 
 /**
- * @author bjfansr@cn.ibm.com
- * @Date 2019-03-04
+ * @author wangwei
+ * @Date 2020/1/20201214
  */
 public class ExportUtils {
   /**

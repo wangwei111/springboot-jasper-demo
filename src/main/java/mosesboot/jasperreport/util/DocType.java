@@ -6,8 +6,8 @@
 package mosesboot.jasperreport.util;
 
 /**
- * @author Moses *
- * @Date 2019/3/11 17:59
+ * @author wangwei
+ * @Date 2020/1/20201214
  */
 public enum DocType {
     PDF("pdf", "application/pdf", ".pdf"),
