@@ -10,7 +10,6 @@ package mosesboot.jasperreport.controller;
  *  基于javabean数据源
  */
 
-import mosesboot.jasperreport.util.DocType;
 import mosesboot.jasperreport.util.JavaBeanJasperHelper;
 import mosesboot.user.entity.ModelTableSource;
 import mosesboot.user.entity.User;
@@ -91,7 +90,6 @@ public class JavaBeanReportController {
         user1.setName("ceshi2");
         list.add(user);
         list.add(user1);
-
         ModelTableSource mts = new ModelTableSource();
         mts.setDataTable(new JRBeanCollectionDataSource(list));
         List<ModelTableSource> mlist = new ArrayList<ModelTableSource>();
