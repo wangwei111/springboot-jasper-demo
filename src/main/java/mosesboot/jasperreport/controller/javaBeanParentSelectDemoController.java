@@ -12,7 +12,6 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,8 +24,8 @@ import java.util.Map;
 
 /**
  * javaben数据源
- *父子类模板下载demo
- * xls文件下载
+ * 父子类模板下载demo  无table模式
+ *  xls文件下载
  * @author wangwei
  * @version 1.0
  * @date 2020/12/14 17:46
